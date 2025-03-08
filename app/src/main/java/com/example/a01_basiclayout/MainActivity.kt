@@ -3,22 +3,28 @@ package com.example.a01_basiclayout
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.lazy.grid.items
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.*
 import androidx.compose.material.icons.outlined.*
+import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
@@ -31,11 +37,61 @@ class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
+            FrontPage()
             HomePage()
         }
     }
 }
 
+
+//2. Opgave (Frontpage)
+@Composable
+fun FrontPage() {
+    Box(
+        modifier = Modifier.fillMaxSize()
+    ) {
+        Image(
+            painter = painterResource(id = R.drawable.front_page),
+            contentDescription = "Front Page Background",
+            modifier = Modifier.fillMaxSize(),
+            contentScale = ContentScale.Crop
+        )
+
+        Column(
+            modifier = Modifier
+                .fillMaxSize()
+                .padding(16.dp),
+            horizontalAlignment = Alignment.CenterHorizontally,
+            verticalArrangement = Arrangement.Center
+        ) {
+            Text(
+                text = "teeSwap",
+                fontSize = 92.sp,
+                fontWeight = FontWeight.Bold,
+                color = Color(0xFFFFC109)
+            )
+
+            Spacer(modifier = Modifier.height(10.dp))
+
+            OutlinedButton(
+                onClick = { },
+                border = BorderStroke(4.dp, Color.White),
+                shape = RoundedCornerShape(24.dp),
+                modifier = Modifier.padding(12.dp)
+            ) {
+                Text(
+                    text = "EXPLORE",
+                    color = Color.White,
+                    fontSize = 18.sp,
+                    modifier = Modifier.padding(horizontal = 40.dp, vertical = 8.dp)
+                )
+            }
+        }
+    }
+}
+
+
+//2. opgave (Homepage)
 @Composable
 fun HomePage() {
     Column(
@@ -205,9 +261,12 @@ fun FilterSortBar() {
     }
 }
 
-//Forhåndsvisning af HomePage
+
+//Forhåndsvisning
 @Preview(showBackground = true)
 @Composable
 fun PreviewHomepage() {
-    HomePage()
+    FrontPage()
+    //HomePage()
+
 }
