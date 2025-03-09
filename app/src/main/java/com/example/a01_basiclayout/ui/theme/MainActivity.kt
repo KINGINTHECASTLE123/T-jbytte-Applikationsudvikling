@@ -1,4 +1,4 @@
-package com.example.a01_basiclayout
+package com.example.a01_basiclayout.ui.theme
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
@@ -14,17 +14,14 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.*
 import androidx.compose.material.icons.outlined.*
-import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
-import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
@@ -32,12 +29,13 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.example.a01_basiclayout.R
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-            FrontPage()
+            //FrontPage()
             HomePage()
         }
     }
@@ -119,6 +117,7 @@ fun ClothesSection() {
     )
 
     LazyVerticalGrid(
+
         columns = GridCells.Fixed(2),
         modifier = Modifier.fillMaxSize(),
         horizontalArrangement = Arrangement.spacedBy(8.dp),
@@ -142,13 +141,13 @@ fun ClothesCard(item: ClothesItem) {
     Column(
         modifier = Modifier
             .background(Color.White)
-            .padding(8.dp),
+            .padding(2.dp),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         Box(
             modifier = Modifier
                 .padding(8.dp)
-                .clip(androidx.compose.foundation.shape.RoundedCornerShape(16.dp))
+                .clip(RoundedCornerShape(16.dp))
         ) {
             Image(
                 painter = painterResource(id = item.imageRes),
@@ -156,7 +155,7 @@ fun ClothesCard(item: ClothesItem) {
                 modifier = Modifier
                     .fillMaxWidth()
                     .aspectRatio(0.8f)
-                    .clip(androidx.compose.foundation.shape.RoundedCornerShape(16.dp)),
+                    .clip(RoundedCornerShape(16.dp)),
                 contentScale = ContentScale.Crop
             )
             Icon(
@@ -179,7 +178,8 @@ fun AppHeader() {
     Row(
         modifier = Modifier
             .fillMaxWidth()
-            .padding(bottom = 8.dp),
+            .padding(top = 40.dp)
+            .padding(bottom = 40.dp),
         horizontalArrangement = Arrangement.SpaceBetween,
         verticalAlignment = Alignment.CenterVertically
     ) {
@@ -238,7 +238,8 @@ fun FilterSortBar() {
     Row(
         modifier = Modifier
             .fillMaxWidth()
-            .padding(20.dp),
+            .offset(y = (32).dp)
+            .padding(10.dp),
         horizontalArrangement = Arrangement.SpaceBetween
     ) {
         Row {
@@ -249,8 +250,6 @@ fun FilterSortBar() {
             )
             Spacer(modifier = Modifier.width(8.dp))
             Icon(imageVector = Icons.Outlined.Tune, contentDescription = "Filter", tint = Color.Black)
-            Spacer(modifier = Modifier.width(8.dp))
-            Icon(imageVector = Icons.Outlined.Sort, contentDescription = "Sort", tint = Color.Black)
         }
 
         Row {
@@ -266,7 +265,7 @@ fun FilterSortBar() {
 @Preview(showBackground = true)
 @Composable
 fun PreviewHomepage() {
-    FrontPage()
-    //HomePage()
+    //FrontPage()
+    HomePage()
 
 }
